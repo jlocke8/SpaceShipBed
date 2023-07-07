@@ -15,29 +15,90 @@ status_frontside_panel = list()
 button_status = [[hex(0x00) for x in range(8)] for y in range(2)]   #initialize 8x2 two dimensional array
 execute_list = list()
 
-
-class TopPanelSwitches_IC1_A(enum.Enum):
+#enumeration definitions for each panel and button name in the spaceship
+class TopPanel_IC0_A(enum.Enum):
+    A0_IC5_LifeSupport=1 
+    A1_IC5_PowerBank=2 
+class TopPanel_IC0_B(enum.Enum):
     A0_IC5_LifeSupport=1 
     A1_IC5_PowerBank=2 
 
-#create dictionary to hold IO expander button definitions
-button_definitions = {  '0A':TopPanelSwitches_IC1_A,
-                        'TOPPANEL_IC1_PORTA':TopPanelSwitches_IC1_A,
-                        '0B':{},
-                        '1A':{},
-                        '1B':{},
-                        '2A':{},
-                        '2B':{},
-                        '3A':{},
-                        '3B':{},
-                        '4A':{},
-                        '4B':{},
-                        '5A':{},
-                        '5B':{},
-                        '6A':{},
-                        '6B':{},
-                        '7A':{},
-                        '7B':{}    }
+class TopPanel_IC1_A(enum.Enum):
+    A0_IC5_LifeSupport=1 
+    A1_IC5_PowerBank=2 
+class TopPanel_IC1_B(enum.Enum):
+    A0_IC5_LifeSupport=1 
+    A1_IC5_PowerBank=2 
+
+class TopPanel_IC2_A(enum.Enum):
+    A0_IC5_LifeSupport=1 
+    A1_IC5_PowerBank=2 
+class TopPanel_IC2_B(enum.Enum):
+    A0_IC5_LifeSupport=1 
+    A1_IC5_PowerBank=2     
+
+class FrontSidePanel_IC3_A(enum.Enum):
+    A0_IC5_LifeSupport=1 
+    A1_IC5_PowerBank=2   
+class FrontSidePanel_IC3_B(enum.Enum):
+    A0_IC5_LifeSupport=1 
+    A1_IC5_PowerBank=2   
+
+class FrontSidePanel_IC4_A(enum.Enum):
+    A0_IC5_LifeSupport=1 
+    A1_IC5_PowerBank=2   
+class FrontSidePanel_IC4_B(enum.Enum):
+    A0_IC5_LifeSupport=1 
+    A1_IC5_PowerBank=2   
+
+
+class BackSidePanel_IC5_A(enum.Enum):
+    A0_IC5_LifeSupport=1 
+    A1_IC5_PowerBank=2   
+class BackSidePanel_IC5_B(enum.Enum):
+    A0_IC5_LifeSupport=1 
+    A1_IC5_PowerBank=2   
+
+class BackSidePanel_IC6_A(enum.Enum):
+    A0_IC5_LifeSupport=1 
+    A1_IC5_PowerBank=2   
+class BackSidePanel_IC6_B(enum.Enum):
+    A0_IC5_LifeSupport=1 
+    A1_IC5_PowerBank=2   
+
+
+#create dictionary to hold IO expander button definitions,  this is how the buttons are physically configured in the spaceship
+button_definitions = {  '0A':TopPanel_IC0_A,
+                        'TOPPANEL_IC0_PORTA':TopPanel_IC0_A,
+                        '0B':TopPanel_IC0_B,
+                        'TOPPANEL_IC0_PORTB':TopPanel_IC0_B,
+                        '1A':TopPanel_IC1_A,
+                        'TOPPANEL_IC1_PORTA':TopPanel_IC1_A,
+                        '1B':TopPanel_IC1_B,
+                        'TOPPANEL_IC1_PORTB':TopPanel_IC1_B,
+                        '2A':TopPanel_IC2_A,
+                        'TOPPANEL_IC2_PORTA':TopPanel_IC2_A,
+                        '2B':TopPanel_IC2_B,
+                        'TOPPANEL_IC2_PORTB':TopPanel_IC2_B,
+
+                        '3A':FrontSidePanel_IC3_A,
+                        'FRONTSIDEPANEL_IC3_PORTA':FrontSidePanel_IC3_A,
+                        '3B':FrontSidePanel_IC3_B,
+                        'FRONTSIDEPANEL_IC3_PORTB':FrontSidePanel_IC3_B,
+                        '4A':FrontSidePanel_IC4_A,
+                        'FRONTSIDEPANEL_IC4_PORTA':FrontSidePanel_IC4_A,
+                        '4B':FrontSidePanel_IC4_B,
+                        'FRONTSIDEPANEL_IC4_PORTB':FrontSidePanel_IC4_B,
+
+                        '5A':BackSidePanel_IC5_A,
+                        'BACKSIDEPANEL_IC5_PORTA':BackSidePanel_IC5_A,
+                        '5B':BackSidePanel_IC5_B,
+                        'BACKSIDEPANEL_IC5_PORTB':BackSidePanel_IC5_B,
+                        '6A':BackSidePanel_IC6_A,
+                        'BACKSIDEPANEL_IC6_PORTA':BackSidePanel_IC6_A,
+                        '6B':BackSidePanel_IC6_B,
+                        'BACKSIDEPANEL_IC6_PORTB':BackSidePanel_IC6_B
+                        }
 
 #configure uinput virtual keyboard
 device = uinput.Device([
@@ -91,6 +152,9 @@ def main():
         print("ERROR! No valid serial connection found")
     else:
         print("Success. Connection established to port: " + str(foundPort.port))
+
+        #request from serial device status of all buttons
+        foundPort.write("GSTAT".encode('utf-8'))
 
         #constantly listen for serial data and execute updates
         try: 
@@ -176,8 +240,37 @@ def executeChanges():
         if len(execute_list) >= 1:
             updateMessage = execute_list.pop().split(":")
             if len(updateMessage) == 2:
+
+                #parse execution command and process changes in state by playing sounds or sending keypresses 
+                print("run: " + updateMessage)
+                chipNumber = int(updateMessage[0][0])
+                portLetter = updateMessage[0][1]
+                portStatus = updateMessage[1]
+                #print("chip number: " + str(chipNumber))
+                if chipNumber >= 0 and chipNumber <= 2: 
+                    #parse Top Panel buttons
+                    print("Parsing Top Panel Buttons\n")
+
+                    if portLetter == 'A':
+                        print(portLetter)
+
+                    else:
+                        print(portLetter)
+
+                    device.emit_click(uinput.KEY_HOME)
+                elif chipNumber >= 3 and chipNumber <= 4:
+                    #parse Front Side Panel buttons
+                    print("Parsing Front Side Panel Buttons\n")
+                elif chipNumber >= 5 and chipNumber <= 6:
+                    #parse Back Side Panel buttons
+                    print("Parsing Back Side Panel Buttons\n")
+                    device.emit_click(uinput.KEY_B)
+                else:
+                    #invalid input
+                    print("ERROR: Invalid chip number\n")
+
                 #process changes in state by playing sounds or espeaking
-                print("run:" + str(updateMessage))               
+              
                 pygame.mixer.Sound("gauss.wav").play()
 
             else:
@@ -196,3 +289,5 @@ if __name__=="__main__":
     main()
 else:
     print("This file is being imported")
+
+
