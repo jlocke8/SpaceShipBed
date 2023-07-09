@@ -242,7 +242,7 @@ def executeChanges():
             if len(updateMessage) == 2:
 
                 #parse execution command and process changes in state by playing sounds or sending keypresses 
-                print("run: " + updateMessage)
+                print("run: " + str(updateMessage))
                 chipNumber = int(updateMessage[0][0])
                 portLetter = updateMessage[0][1]
                 portStatus = updateMessage[1]
