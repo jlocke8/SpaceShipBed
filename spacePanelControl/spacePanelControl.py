@@ -278,7 +278,22 @@ def executeChanges():
 
                         if portLetter == 'A':
                             if portStatus & (1<<0):
-                                print(button_definitions['2A'])
+                                device.emit_click(uinput.KEY_A)                              
+                            if portStatus & (1<<1):    
+                                device.emit_click(uinput.KEY_B)  
+                            if portStatus & (1<<2):
+                                device.emit_click(uinput.KEY_C)                              
+                            if portStatus & (1<<3):
+                                device.emit_click(uinput.KEY_D)                              
+                            if portStatus & (1<<4):
+                                device.emit_click(uinput.KEY_E)                              
+                            if portStatus & (1<<5):
+                                device.emit_click(uinput.KEY_F)                              
+                            if portStatus & (1<<6):
+                                device.emit_click(uinput.KEY_G)                              
+                            if portStatus & (1<<7):
+                                device.emit_click(uinput.KEY_H)                              
+
 
                         else:
                             print(portLetter)
