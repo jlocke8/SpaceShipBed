@@ -31,8 +31,14 @@ class TopPanel_IC1_B(enum.Enum):
     A1_IC5_PowerBank=2 
 
 class TopPanel_IC2_A(enum.Enum):
-    A0_IC5_LifeSupport=1 
-    A1_IC5_PowerBank=2 
+    A0_IC2_Launch2=0 
+    A1_IC2_Toes=1
+    A2_IC2_Atootie=2
+    A3_IC2_ButtCrack=3
+    A4_IC2_DriedPee=4
+    A5_IC2_Poop=5
+    A6_IC2_FootFace=6
+    A7_IC2_Dabadu=7
 class TopPanel_IC2_B(enum.Enum):
     A0_IC5_LifeSupport=1 
     A1_IC5_PowerBank=2     
@@ -245,17 +251,38 @@ def executeChanges():
                 print("run: " + str(updateMessage))
                 chipNumber = int(updateMessage[0][0])
                 portLetter = updateMessage[0][1]
-                portStatus = updateMessage[1]
+                portStatus = int(updateMessage[1], 16)    #convert string to hex number
                 #print("chip number: " + str(chipNumber))
                 if chipNumber >= 0 and chipNumber <= 2: 
                     #parse Top Panel buttons
                     print("Parsing Top Panel Buttons\n")
 
-                    if portLetter == 'A':
-                        print(portLetter)
+                    if chipNumber == 0:
+                        print(chipNumber)
 
-                    else:
-                        print(portLetter)
+                        if portLetter == 'A':
+                            print(portLetter)
+                        else:
+                            print(portLetter)
+
+                    if chipNumber == 1:
+                        print(chipNumber)
+
+                        if portLetter == 'A':
+                            print(portLetter)
+                        else:
+                            print(portLetter)
+
+                    if chipNumber == 2:
+                        print(chipNumber)
+
+                        if portLetter == 'A':
+                            if portStatus & (1<<0):
+                                print(button_definitions['2A'])
+
+                        else:
+                            print(portLetter)
+
 
                     device.emit_click(uinput.KEY_HOME)
                 elif chipNumber >= 3 and chipNumber <= 4:
