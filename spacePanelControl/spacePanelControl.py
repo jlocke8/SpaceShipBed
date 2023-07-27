@@ -106,43 +106,6 @@ button_definitions = {  '0A':TopPanel_IC0_A,
                         'BACKSIDEPANEL_IC6_PORTB':BackSidePanel_IC6_B
                         }
 
-IC0A_uinput_map = {     0: uinput.KEY_0,
-                        1: uinput.KEY_0,
-                        2: uinput.KEY_0,
-                        3: uinput.KEY_0,
-                        4: uinput.KEY_0,
-                        5: uinput.KEY_0,
-                        6: uinput.KEY_0,
-                        7: uinput.KEY_0,
-                        }
-
-IC0B_uinput_map = {     0: uinput.KEY_0,
-                        1: uinput.KEY_0,
-                        2: uinput.KEY_0,
-                        3: uinput.KEY_0,
-                        4: uinput.KEY_0,
-                        5: uinput.KEY_0,
-                        6: uinput.KEY_0,
-                        7: uinput.KEY_0,
-                        }  
-                        
-#create dictionary to hold uinput mappings
-button_uinput_map = {   '0A':IC0A_uinput_map,
-                        '0B':IC0B_uinput_map,
-                        '1A':TopPanel_IC1_A, 
-                        '1B':TopPanel_IC1_B,
-                        '2A':TopPanel_IC2_A,
-                        '2B':TopPanel_IC2_B,
-                        '3A':FrontSidePanel_IC3_A,
-                        '3B':FrontSidePanel_IC3_B,
-                        '4A':FrontSidePanel_IC4_A,
-                        '4B':FrontSidePanel_IC4_B,
-                        '5A':BackSidePanel_IC5_A,
-                        '5B':BackSidePanel_IC5_B,
-                        '6A':BackSidePanel_IC6_A,
-                        '6B':BackSidePanel_IC6_B,
-                        }
-
                       
 
 #configure uinput virtual keyboard
