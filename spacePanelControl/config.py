@@ -2,7 +2,7 @@
 import uinput
 import pygame
 import enum 
-
+#TOP PANEL
 IC0A_uinput_map = {     0: uinput.KEY_0,
                         1: uinput.KEY_0,
                         2: uinput.KEY_0,
@@ -12,7 +12,7 @@ IC0A_uinput_map = {     0: uinput.KEY_0,
                         6: uinput.KEY_0,
                         7: uinput.KEY_0,
                         }
-
+#TOP PANEL
 IC0B_uinput_map = {     0: uinput.KEY_0,
                         1: uinput.KEY_0,
                         2: uinput.KEY_0,
@@ -22,8 +22,8 @@ IC0B_uinput_map = {     0: uinput.KEY_0,
                         6: uinput.KEY_0,
                         7: uinput.KEY_0,
                         }  
-
-IC1A_uinput_map = {     0: uinput.KEY_0,
+#TOP PANEL
+IC1A_uinput_map = {     0: uinput.KEY_S,
                         1: uinput.KEY_0,
                         2: uinput.KEY_0,
                         3: uinput.KEY_0,
@@ -32,7 +32,7 @@ IC1A_uinput_map = {     0: uinput.KEY_0,
                         6: uinput.KEY_0,
                         7: uinput.KEY_0,
                         }
-
+#TOP PANEL
 IC1B_uinput_map = {     0: uinput.KEY_0,
                         1: uinput.KEY_0,
                         2: uinput.KEY_0,
@@ -42,7 +42,7 @@ IC1B_uinput_map = {     0: uinput.KEY_0,
                         6: uinput.KEY_0,
                         7: uinput.KEY_0,
                         }                          
-
+#TOP PANEL
 IC2A_uinput_map = {     0: uinput.KEY_0,
                         1: uinput.KEY_0,
                         2: uinput.KEY_0,
@@ -52,7 +52,7 @@ IC2A_uinput_map = {     0: uinput.KEY_0,
                         6: uinput.KEY_0,
                         7: uinput.KEY_0,
                         }
-
+#TOP PANEL
 IC2B_uinput_map = {     0: uinput.KEY_0,
                         1: uinput.KEY_0,
                         2: uinput.KEY_0,
@@ -62,7 +62,7 @@ IC2B_uinput_map = {     0: uinput.KEY_0,
                         6: uinput.KEY_0,
                         7: uinput.KEY_0,
                         }  
-
+#FRONT SIDE PANEL
 IC3A_uinput_map = {     0: uinput.KEY_0,
                         1: uinput.KEY_0,
                         2: uinput.KEY_0,
@@ -72,7 +72,7 @@ IC3A_uinput_map = {     0: uinput.KEY_0,
                         6: uinput.KEY_0,
                         7: uinput.KEY_0,
                         }
-
+#FRONT SIDE PANEL
 IC3B_uinput_map = {     0: uinput.KEY_0,
                         1: uinput.KEY_0,
                         2: uinput.KEY_0,
@@ -82,7 +82,7 @@ IC3B_uinput_map = {     0: uinput.KEY_0,
                         6: uinput.KEY_0,
                         7: uinput.KEY_0,
                         }  
-
+#FRONT SIDE PANEL
 IC4A_uinput_map = {     0: uinput.KEY_0,
                         1: uinput.KEY_0,
                         2: uinput.KEY_0,
@@ -92,7 +92,7 @@ IC4A_uinput_map = {     0: uinput.KEY_0,
                         6: uinput.KEY_0,
                         7: uinput.KEY_0,
                         }
-
+#FRONT SIDE PANEL
 IC4B_uinput_map = {     0: uinput.KEY_0,
                         1: uinput.KEY_0,
                         2: uinput.KEY_0,
@@ -102,7 +102,7 @@ IC4B_uinput_map = {     0: uinput.KEY_0,
                         6: uinput.KEY_0,
                         7: uinput.KEY_0,
                         }  
-
+#BACK SIDE PANEL
 IC5A_uinput_map = {     0: uinput.KEY_0,
                         1: uinput.KEY_0,
                         2: uinput.KEY_0,
@@ -112,7 +112,7 @@ IC5A_uinput_map = {     0: uinput.KEY_0,
                         6: uinput.KEY_0,
                         7: uinput.KEY_0,
                         }
-
+#BACK SIDE PANEL
 IC5B_uinput_map = {     0: uinput.KEY_0,
                         1: uinput.KEY_0,
                         2: uinput.KEY_0,
@@ -122,7 +122,7 @@ IC5B_uinput_map = {     0: uinput.KEY_0,
                         6: uinput.KEY_0,
                         7: uinput.KEY_0,
                         }  
-
+#BACK SIDE PANEL
 IC6A_uinput_map = {     0: uinput.KEY_0,
                         1: uinput.KEY_0,
                         2: uinput.KEY_0,
@@ -132,7 +132,7 @@ IC6A_uinput_map = {     0: uinput.KEY_0,
                         6: uinput.KEY_0,
                         7: uinput.KEY_0,
                         }
-
+#BACK SIDE PANEL
 IC6B_uinput_map = {     0: uinput.KEY_0,
                         1: uinput.KEY_0,
                         2: uinput.KEY_0,
