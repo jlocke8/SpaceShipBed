@@ -170,15 +170,16 @@ def executeChanges():
                 #parse execution command and process changes in state by playing sounds or sending keypresses 
                 print("run: " + str(updateMessage))
                 chipNumber = int(updateMessage[0][0])
-                chipNumStr = updateMessage[0][0]
+                chipNumStr = updateMessage[0]
                 portLetter = updateMessage[0][1]
                 portStatus = int(updateMessage[1], 16)    #convert string to hex number
                 #print("chip number: " + str(chipNumber))
 
                 for bitshift in range(0, 8):
                     if(portStatus & (1<<bitshift)):
+                        print(chipNumStr)
                         print(config.button_uinput_map[chipNumStr][bitshift])
-                        device.emit_clic(config.button_uinput_map[chipNumStr][bitshift])
+                        device.emit_click(config.button_uinput_map[chipNumStr][bitshift])
                         print(config.button_sound_map[chipNumStr][bitshift])
                         pygame.mixer.Sound(config.button_sound_map[chipNumStr][bitshift]).play()
                 if chipNumber >= 0 and chipNumber <= 2: 
