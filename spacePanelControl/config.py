@@ -286,7 +286,7 @@ IC5A_sound_map = {
                         }  
 
 IC5B_sound_map = {     
-			0: "./sounds/startupsequence.wav",
+			            0: "./sounds/reactor1On.wav",
                         1: "./sounds/startupsequence.wav",
                         2: "./sounds/startupsequence.wav",
                         3: "./sounds/startupsequence.wav",

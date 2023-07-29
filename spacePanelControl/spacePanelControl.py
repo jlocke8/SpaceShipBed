@@ -243,7 +243,7 @@ def executeChanges():
 
                 #process changes in state by playing sounds or espeaking
               
-                pygame.mixer.Sound("gauss.wav").play()
+                #pygame.mixer.Sound("gauss.wav").play()
 
             else:
                 print("ERROR! Invalid update message: " + str(updateMessage))
