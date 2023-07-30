@@ -79,8 +79,9 @@ def main():
     else:
         print("Success. Connection established to port: " + str(foundPort.port))
 
+        time.sleep(1)
         #request from serial device status of all buttons
-        foundPort.write("GSTAT".encode('utf-8'))
+        foundPort.write("GSTAT\n".encode('utf-8'))
 
         #constantly listen for serial data and execute updates
         try: 
