@@ -148,6 +148,7 @@ static uint8_t tick_1ms = 0;
 static uint8_t tick_10ms = 0;
 static uint8_t tick_100ms = 0;
 static uint8_t tick_1sec = 0;
+static String serialRead;
 void loop()
 {
   // put your main code here, to run repeatedly:
@@ -156,6 +157,7 @@ void loop()
   if (tick_1ms++ >= 10)
   {
     tick_1ms = 0;
+
     if (tick_10ms++ >= 10)
     {
       tick_10ms = 0;
@@ -200,6 +202,9 @@ void loop()
           Serial.println(message);  
       }
 */
+
+      //poll any incoming serial messages from the master
+      Serial.read()
 
       //poll status of IO expanders
       //compare read to that of stored state
