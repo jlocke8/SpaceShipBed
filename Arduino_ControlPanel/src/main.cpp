@@ -103,6 +103,7 @@ void setup()
 
   //setup uart
   Serial.begin(230400);
+  Serial.setTimeout(30); //set serial wait time for 30 ms
   while (!Serial)
   {
     ; //spin if not setup correctly
@@ -185,6 +186,15 @@ void loop()
         {
           digitalWrite(LED_PIN, HIGH);
         }
+
+        //poll any incoming serial messages from the master
+        serialRead = "";
+        serialRead = Serial.readString();
+        if(serialRead.length()>0){
+          Serial.println(serialRead);
+        }
+
+
       }
     }
     else
@@ -203,9 +213,8 @@ void loop()
       }
 */
 
-      //poll any incoming serial messages from the master
-      Serial.read()
 
+      
       //poll status of IO expanders
       //compare read to that of stored state
 
