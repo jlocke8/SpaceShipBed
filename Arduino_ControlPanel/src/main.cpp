@@ -149,7 +149,8 @@ static uint8_t tick_1ms = 0;
 static uint8_t tick_10ms = 0;
 static uint8_t tick_100ms = 0;
 static uint8_t tick_1sec = 0;
-static String serialRead;
+static char command[10];
+static char ch, k;
 void loop()
 {
   // put your main code here, to run repeatedly:
@@ -188,11 +189,19 @@ void loop()
         }
 
         //poll any incoming serial messages from the master
-        serialRead = "";
-        serialRead = Serial.readString();
-        if(serialRead.length()>0){
-          Serial.println(serialRead);
+        if(Serial.available() !=0){
+          //read serial buffer
+          /*for(k=0; k < 5; k++){
+            ch = Serial.read();
+            command[k]=ch;
+          }*/
+          Serial.readBytesUntil(ch, command, Serial.available());
+          Serial.println("command receieved: ");
+          Serial.print(command);
+          Serial.flush();
         }
+        
+
 
 
       }
