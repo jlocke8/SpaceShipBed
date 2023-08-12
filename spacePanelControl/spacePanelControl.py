@@ -81,7 +81,15 @@ def main():
 
         time.sleep(1)
         #request from serial device status of all buttons
-        foundPort.write("GSTAT\n".encode('utf-8'))
+        #foundPort.write("GSTAT\n".encode('utf-8'))
+        print(foundPort)
+        foundPort.write(b'G')
+        foundPort.write(b'S')
+        foundPort.write(b'T')
+        foundPort.write(b'A')
+        foundPort.write(b'T')
+        foundPort.write(b'\n')
+        time.sleep(1)
 
         #constantly listen for serial data and execute updates
         try: 
