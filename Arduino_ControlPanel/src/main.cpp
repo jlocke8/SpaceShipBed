@@ -88,6 +88,7 @@ Adafruit_MCP23X17 mcp[NUM_EXPANDERS];
 bool mcpActive[NUM_EXPANDERS];
 
 const char heart_beat[] = "(^_^)\n";
+const char cmd_get_status[] = "GSTAT";
 
 //Function prototypes
 static uint8_t scanGPIO(Adafruit_MCP23X17 &expander, int chipNumber, buttonStatus_t &buttonStates, char (&statusMessage)[MAX_MSG_LEN]);
@@ -103,7 +104,7 @@ void setup()
 
   //setup uart
   Serial.begin(230400);
-  Serial.setTimeout(30); //set serial wait time for 30 ms
+  Serial.setTimeout(200); //set serial wait time for 30 ms
   while (!Serial)
   {
     ; //spin if not setup correctly
@@ -191,17 +192,24 @@ void loop()
         //poll any incoming serial messages from the master
         if(Serial.available() !=0){
           //read serial buffer
-          /*for(k=0; k < 5; k++){
-            ch = Serial.read();
-            command[k]=ch;
-          }*/
-          Serial.readBytesUntil(ch, command, Serial.available());
-          Serial.println("command receieved: ");
-          Serial.print(command);
-          Serial.flush();
+          k=Serial.available(); //get number of bytes in read buffer (max 128)
+  
+          Serial.readBytesUntil(ch, command, k);  //read bytes into command buffer
+          command[++k]='\0';  //set last character as null terminator
+          Serial.print("***INCOMING*** ack command receieved: ");
+          Serial.print(command);          
+          //Serial.flush();
         }
         
+        if(strlen(command)>0){
+          if(strcmp(command, cmd_get_status)==0){   //commands strings match
 
+            //send status of all the buttons to the serial master
+            Serial.println("STATUS IS THIS");
+
+          }
+          command[0]='\0';    //reset command buffer by setting first character as null terminator        
+        }
 
 
       }

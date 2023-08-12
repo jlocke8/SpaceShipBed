@@ -80,16 +80,15 @@ def main():
         print("Success. Connection established to port: " + str(foundPort.port))
 
         time.sleep(1)
-        #request from serial device status of all buttons
-        #foundPort.write("GSTAT\n".encode('utf-8'))
+        #request from serial device status of all buttons        
         print(foundPort)
-        foundPort.write(b'G')
-        foundPort.write(b'S')
-        foundPort.write(b'T')
-        foundPort.write(b'A')
-        foundPort.write(b'T')
-        foundPort.write(b'\n')
-        time.sleep(1)
+        serialCommand= "GSTAT"  
+        #send command message to serial device
+        for i in serialCommand:
+            foundPort.write(i.encode())     #need to encode string to utf-8 (bytes)
+            time.sleep(0.001)   #need to add small delay for timing purposes, otherwise serial gets scrambled message
+        #print(serialCommand)
+        #time.sleep(1)
 
         #constantly listen for serial data and execute updates
         try: 
