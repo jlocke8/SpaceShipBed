@@ -82,7 +82,7 @@ union buttonStatus_t
   uint16_t states16[8] = {0};
 } buttons;
 
-char message[100];
+char message[100];  //send buffer for outgoing serial messages
 
 Adafruit_MCP23X17 mcp[NUM_EXPANDERS];
 bool mcpActive[NUM_EXPANDERS];
@@ -92,6 +92,11 @@ const char cmd_get_status[] = "GSTAT";
 
 //Function prototypes
 static uint8_t scanGPIO(Adafruit_MCP23X17 &expander, int chipNumber, buttonStatus_t &buttonStates, char (&statusMessage)[MAX_MSG_LEN]);
+template <int N>
+static uint8_t readSerial(char (&read_buffer)[N]);
+
+static uint8_t sendStatus(void);
+
 
 void setup()
 {
@@ -150,8 +155,8 @@ static uint8_t tick_1ms = 0;
 static uint8_t tick_10ms = 0;
 static uint8_t tick_100ms = 0;
 static uint8_t tick_1sec = 0;
-static char command[10];
-static char ch, k;
+static char command[10];    //read buffer for incoming serial commands
+
 void loop()
 {
   // put your main code here, to run repeatedly:
@@ -189,28 +194,29 @@ void loop()
           digitalWrite(LED_PIN, HIGH);
         }
 
-        //poll any incoming serial messages from the master
-        if(Serial.available() !=0){
-          //read serial buffer
-          k=Serial.available(); //get number of bytes in read buffer (max 128)
+        // //poll any incoming serial messages from the master
+        // if(Serial.available() !=0){
+        //   //read serial buffer
+        //   k=Serial.available(); //get number of bytes in read buffer (max 128)
   
-          Serial.readBytesUntil(ch, command, k);  //read bytes into command buffer
-          command[++k]='\0';  //set last character as null terminator
-          Serial.print("***INCOMING*** ack command receieved: ");
-          Serial.print(command);          
-          //Serial.flush();
-        }
+        //   Serial.readBytesUntil(ch, command, k);  //read bytes into command buffer
+        //   command[++k]='\0';  //set last character as null terminator
+        //   Serial.print("***INCOMING*** ack command receieved: ");
+        //   Serial.print(command);          
+        //   //Serial.flush();
+        // }
         
-        if(strlen(command)>0){
-          if(strcmp(command, cmd_get_status)==0){   //commands strings match
+        // if(strlen(command)>0){
+        //   if(strcmp(command, cmd_get_status)==0){   //commands strings match
 
-            //send status of all the buttons to the serial master
-            Serial.println("STATUS IS THIS");
+        //     //send status of all the buttons to the serial master
+        //     Serial.println("STATUS IS THIS");
 
-          }
-          command[0]='\0';    //reset command buffer by setting first character as null terminator        
-        }
+        //   }
+        //   command[0]='\0';    //reset command buffer by setting first character as null terminator        
+        // }
 
+        readSerial<sizeof(command)>(command);
 
       }
     }
@@ -254,6 +260,42 @@ void loop()
   }
 }
 
+
+//Function "readSerial"
+//Description:
+//polls the serial port for any incoming messages
+//if there is a message copy it to the reference buffer 
+//then process the buffer to read in and execute any commands
+static char ch, k;
+template <int N>
+uint8_t readSerial(char (&read_buffer)[N]){
+        //poll any incoming serial messages from the master
+        if(Serial.available() !=0){
+          //read serial buffer
+          k=Serial.available(); //get number of bytes in read buffer (max 128)
+  
+          Serial.readBytesUntil(ch, read_buffer, k);  //read bytes into command buffer
+          read_buffer[++k]='\0';  //set last character as null terminator
+          Serial.print("***INCOMING*** ack command receieved: ");
+          Serial.print(read_buffer);          
+          //Serial.flush();
+        }
+
+        //parse serial message for commands
+        if(strlen(read_buffer)>0){
+          if(strcmp(read_buffer, cmd_get_status)==0){   //commands strings match
+
+            //send status of all the buttons to the serial master
+            Serial.println("STATUS IS THIS");
+
+          }
+          read_buffer[0]='\0';    //reset command buffer by setting first character as null terminator        
+        }
+
+  return 0;
+}
+
+
 //Function "scanGPIO"
 //Description:
 //reads pin status's of GPIO expander chips.
@@ -267,7 +309,7 @@ uint8_t scanGPIO(Adafruit_MCP23X17 &expander, int chipNumber, buttonStatus_t &bu
   read = expander.readGPIOA();
   if (read != buttonStates.states8[chipNumber][0])
   {
-    buttonStates.states8[chipNumber][0] = read;
+    buttonStates.states8[chipNumber][0] = read; //update button status
     sprintf(statusMessage + strlen(statusMessage), "#%dA:%x", chipNumber, read);
     //Serial.println(statusMessage);
   }
