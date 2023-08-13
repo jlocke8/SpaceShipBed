@@ -91,11 +91,12 @@ const char heart_beat[] = "(^_^)\n";
 const char cmd_get_status[] = "GSTAT";
 
 //Function prototypes
-static uint8_t scanGPIO(Adafruit_MCP23X17 &expander, int chipNumber, buttonStatus_t &buttonStates, char (&statusMessage)[MAX_MSG_LEN]);
-template <int N>
-static uint8_t readSerial(char (&read_buffer)[N]);
+static uint8_t scanGPIO(Adafruit_MCP23X17 &expander, int chipNumber, buttonStatus_t &buttonStates, char (&statusMessage)[MAX_MSG_LEN]); //scans gpio expanders and sends only updated
 
-static uint8_t sendStatus(void);
+template <int N>
+static uint8_t readSerial(char (&read_buffer)[N]);  //read and execute incoming commands
+
+static uint8_t sendStatusAll(buttonStatus_t &buttonStates, char (&statusMessage)[MAX_MSG_LEN]);  //sends all of the button status's
 
 
 void setup()
@@ -265,7 +266,7 @@ uint8_t readSerial(char (&read_buffer)[N]){
           if(strcmp(read_buffer, cmd_get_status)==0){   //commands strings match
 
             //send status of all the buttons to the serial master
-            sendStatus();
+            sendStatusAll(buttons, message);
 
           }
           read_buffer[0]='\0';    //reset command buffer by setting first character as null terminator        
@@ -274,13 +275,21 @@ uint8_t readSerial(char (&read_buffer)[N]){
   return 0;
 }
 
-//Function "sendStatus"
+//Function "sendStatusAll"
 //Description:
 //iterates through the button status buffer and sends out all
 //of the button status's in series as update messages to the master
-uint8_t sendStatus(void){
+//this passes in two parameters:
+//"buttonsStates" which is a 2dimensional array that holds all the button status's
+//"statusMessage" which is a char buffer that holds an outgoing serial message to be sent to the master
+int m;
+uint8_t sendStatusAll(buttonStatus_t &buttonStates, char (&statusMessage)[MAX_MSG_LEN]){  //sends all of the button status's
   Serial.println("\nSENDING ALL BUTTON STATUS");
 
+  for(m=0; m <NUM_EXPANDERS; m++){  //iterate through all the chips    
+    sprintf(statusMessage + strlen(statusMessage), "#%dA:%x", m, buttons.states8[m][0]);  //status port A of the chip
+    sprintf(statusMessage + strlen(statusMessage), "#%dB:%x", m, buttons.states8[m][1]);  //status port B of the chip
+  }
 
 }
 

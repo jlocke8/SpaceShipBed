@@ -58,7 +58,11 @@ for i in range(20):
     device_mouse.emit(uinput.REL_X, -5)
     device_mouse.emit(uinput.REL_Y, -5)
 
-#print('hello')
+
+class statusMessage:
+    chipNumStr=""
+    portLetter=""
+    portStatus=""
 
 
 #main program
@@ -87,16 +91,26 @@ def main():
         for i in serialCommand:
             foundPort.write(i.encode())     #need to encode string to utf-8 (bytes)
             time.sleep(0.001)   #need to add small delay for timing purposes, otherwise serial gets scrambled message
-        #print(serialCommand)
         #time.sleep(1)
 
         #constantly listen for serial data and execute updates
         try: 
             print("Ctrl-C to end")    
             status = 0        
+
+            #read in the status of all buttons as a result of sending "GSTAT" command to update button status banks
+            timeOutStart = time.perf_counter()
+            timeOut = False
+            while(timeOut is False):    #only poll for status without execution for a fixed time
+                status = pollSerialLoop(foundPort, True)    #scan status messages but ignore execution
+                timeOutCount = time.perf_counter()
+                if (timeOutCount - timeOutStart) >= 2:
+                    timeOut = True            
+                    
+
             while(status == 0):
                 #poll status
-                status = pollSerialLoop(foundPort)
+                status = pollSerialLoop(foundPort, False)   #scan status messages and queue to execute
 
                 #execute changes from execute_list
                 status = executeChanges()
@@ -144,7 +158,7 @@ def scanConnections():
 
 
 #read from serial connection and update informtion
-def pollSerialLoop(connection):
+def pollSerialLoop(connection, ignoreExecute):
 
     readSerial = connection.readline().decode('utf-8') 
     if len(readSerial) > 0:
@@ -159,8 +173,9 @@ def pollSerialLoop(connection):
             print("bStatus:" + str(button_status))       
 
             #add updates to execution queue
-            execute_list.extend(parsedMessages)
-            print("exeList:" + str(execute_list))
+            if ignoreExecute is False:
+                execute_list.extend(parsedMessages)
+                print("exeList:" + str(execute_list))
 
     return 0
 
@@ -270,4 +285,16 @@ if __name__=="__main__":
 else:
     print("This file is being imported")
 
-
+#this function takes the parsed serial message which looks like 0A:XX and interprets the meaning 
+#the first two characters are the chip number and port letter respectively
+#the message after ":" is a hex value of the port status
+def decodeMessage(parsedMessage):
+    splitMessage=parsedMessage.split(":")
+    if len(splitMessage) == 2:          
+        decoded = statusMessage()
+        decoded.chipNumStr = updateMessage[0]    #this is a string
+        decoded.portLetter = updateMessage[0][1]
+        decoded.portStatus = int(updateMessage[1], 16)    #convert string to hex number
+        return decoded
+    else:
+        return 1    #1 means error
