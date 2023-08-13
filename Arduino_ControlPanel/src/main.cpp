@@ -194,28 +194,7 @@ void loop()
           digitalWrite(LED_PIN, HIGH);
         }
 
-        // //poll any incoming serial messages from the master
-        // if(Serial.available() !=0){
-        //   //read serial buffer
-        //   k=Serial.available(); //get number of bytes in read buffer (max 128)
-  
-        //   Serial.readBytesUntil(ch, command, k);  //read bytes into command buffer
-        //   command[++k]='\0';  //set last character as null terminator
-        //   Serial.print("***INCOMING*** ack command receieved: ");
-        //   Serial.print(command);          
-        //   //Serial.flush();
-        // }
-        
-        // if(strlen(command)>0){
-        //   if(strcmp(command, cmd_get_status)==0){   //commands strings match
-
-        //     //send status of all the buttons to the serial master
-        //     Serial.println("STATUS IS THIS");
-
-        //   }
-        //   command[0]='\0';    //reset command buffer by setting first character as null terminator        
-        // }
-
+        //poll incoming serial messages from the master, parse commands, and execute commands
         readSerial<sizeof(command)>(command);
 
       }
@@ -264,7 +243,7 @@ void loop()
 //Function "readSerial"
 //Description:
 //polls the serial port for any incoming messages
-//if there is a message copy it to the reference buffer 
+//if there is a message copy it to the referenced read buffer (this passes in a global char array) 
 //then process the buffer to read in and execute any commands
 static char ch, k;
 template <int N>
@@ -286,7 +265,7 @@ uint8_t readSerial(char (&read_buffer)[N]){
           if(strcmp(read_buffer, cmd_get_status)==0){   //commands strings match
 
             //send status of all the buttons to the serial master
-            Serial.println("STATUS IS THIS");
+            sendStatus();
 
           }
           read_buffer[0]='\0';    //reset command buffer by setting first character as null terminator        
@@ -295,6 +274,15 @@ uint8_t readSerial(char (&read_buffer)[N]){
   return 0;
 }
 
+//Function "sendStatus"
+//Description:
+//iterates through the button status buffer and sends out all
+//of the button status's in series as update messages to the master
+uint8_t sendStatus(void){
+  Serial.println("\nSENDING ALL BUTTON STATUS");
+
+
+}
 
 //Function "scanGPIO"
 //Description:
