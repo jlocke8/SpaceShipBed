@@ -14,7 +14,7 @@ import config       #external python file which holds configuration dictionaries
 status_top_panel = list()
 status_backside_panel = list()
 status_frontside_panel = list()
-button_status = [[hex(0x00) for x in range(8)] for y in range(2)]   #initialize 8x2 two dimensional array
+button_status = [[hex(0x00) for x in range(2)] for y in range(8)]   #initialize 8x2 two dimensional array
 execute_list = list()
 
 
@@ -60,6 +60,7 @@ for i in range(20):
 
 
 class statusMessage:
+    chipNumber=""
     chipNumStr=""
     portLetter=""
     portStatus=""
@@ -98,19 +99,27 @@ def main():
             print("Ctrl-C to end")    
             status = 0        
 
-            #read in the status of all buttons as a result of sending "GSTAT" command to update button status banks
-            timeOutStart = time.perf_counter()
-            timeOut = False
-            while(timeOut is False):    #only poll for status without execution for a fixed time
-                status = pollSerialLoop(foundPort, True)    #scan status messages but ignore execution
-                timeOutCount = time.perf_counter()
-                if (timeOutCount - timeOutStart) >= 2:
-                    timeOut = True            
+
+
+            # while(timeOut is False):    #only poll for status without execution for a fixed time
+            #     status = pollSerialLoop(foundPort, True)    #scan status messages but ignore execution
+            #     timeOutCount = time.perf_counter()
+            #     if (timeOutCount - timeOutStart) >= 2:
+            #         timeOut = True            
                     
 
             while(status == 0):
-                #poll status
-                status = pollSerialLoop(foundPort, False)   #scan status messages and queue to execute
+                #for a period of time, read in the status of all buttons as a result of sending "GSTAT" command to update button status banks
+                timeOutStart = time.perf_counter()
+                timeOut = False
+                if timeOut == False:
+                    status= pollSerialLoop(foundPort,True)
+                    timeOutCount = time.perf_counter()
+                    if (timeOutCount - timeOutStart) >= 2:
+                        timeOut = True
+                else:
+                    #poll status and add updates the execution queue
+                    status = pollSerialLoop(foundPort, False)   #scan status messages and queue to execute
 
                 #execute changes from execute_list
                 status = executeChanges()
@@ -169,8 +178,14 @@ def pollSerialLoop(connection, ignoreExecute):
             parsedMessages = [x for x in readSerial.replace('\n','').replace('\r','').split("#") if x]
             #print(parsedMessages)
 
-            #update the status banks with given information
-            print("bStatus:" + str(button_status))       
+            #update the status banks with given information              
+            for eachMsg in parsedMessages:
+                msg = decodeMessage(eachMsg)
+                if msg.portLetter == 'A':
+                    button_status[int(msg.chipNumStr[0])][0] = hex(msg.portStatus)
+                else: 
+                    button_status[int(msg.chipNumStr[0])][1] = hex(msg.portStatus)
+            print("bStatus:" + str(button_status))    
 
             #add updates to execution queue
             if ignoreExecute is False:
@@ -192,6 +207,7 @@ def executeChanges():
 
                 #parse execution command and process changes in state by playing sounds or sending keypresses 
                 print("run: " + str(updateMessage))
+                msg = decodeMessage(updateMessage)
                 chipNumber = int(updateMessage[0][0])
                 chipNumStr = updateMessage[0]
                 portLetter = updateMessage[0][1]
@@ -199,64 +215,64 @@ def executeChanges():
                 #print("chip number: " + str(chipNumber))
 
                 for bitshift in range(0, 8):
-                    if(portStatus & (1<<bitshift)):
-                        print(chipNumStr)
-                        print(config.button_uinput_map[chipNumStr][bitshift])
-                        device.emit_click(config.button_uinput_map[chipNumStr][bitshift])
-                        print(config.button_sound_map[chipNumStr][bitshift])
-                        pygame.mixer.Sound(config.button_sound_map[chipNumStr][bitshift]).play()
-                if chipNumber >= 0 and chipNumber <= 2: 
+                    if(msg.portStatus & (1<<bitshift)):
+                        print(msg.chipNumStr)
+                        print(config.button_uinput_map[msg.chipNumStr][bitshift])
+                        device.emit_click(config.button_uinput_map[msg.chipNumStr][bitshift])
+                        print(config.button_sound_map[msg.chipNumStr][bitshift])
+                        pygame.mixer.Sound(config.button_sound_map[msg.chipNumStr][bitshift]).play()
+                if msg.chipNumber >= 0 and msg.chipNumber <= 2: 
                     #parse Top Panel buttons
                     print("Parsing Top Panel Buttons\n")
 
-                    if chipNumber == 0:
-                        print(chipNumber)
+                    if msg.chipNumber == 0:
+                        print(msg.chipNumber)
 
-                        if portLetter == 'A':
-                            print(portLetter)
+                        if msg.portLetter == 'A':
+                            print(msg.portLetter)
                         else:
-                            print(portLetter)
+                            print(msg.portLetter)
 
-                    if chipNumber == 1:
-                        print(chipNumber)
+                    if msg.chipNumber == 1:
+                        print(msg.chipNumber)
 
-                        if portLetter == 'A':
-                            print(portLetter)
+                        if msg.portLetter == 'A':
+                            print(msg.portLetter)
                         else:
-                            print(portLetter)
+                            print(msg.portLetter)
 
-                    if chipNumber == 2:
-                        print(chipNumber)
+                    if msg.chipNumber == 2:
+                        print(msg.chipNumber)
 
-                        if portLetter == 'A':
-                            if portStatus & (1<<0):
+                        if msg.portLetter == 'A':
+                            if msg.portStatus & (1<<0):
                                 print(config.button_uinput_map['2A'][0])
                                 device.emit_click(config.button_uinput_map['2A'][0])                              
-                            if portStatus & (1<<1):    
+                            if msg.portStatus & (1<<1):    
                                 device.emit_click(uinput.KEY_B)  
-                            if portStatus & (1<<2):
+                            if msg.portStatus & (1<<2):
                                 device.emit_click(uinput.KEY_C)                              
-                            if portStatus & (1<<3):
+                            if msg.portStatus & (1<<3):
                                 device.emit_click(uinput.KEY_D)                              
-                            if portStatus & (1<<4):
+                            if msg.portStatus & (1<<4):
                                 device.emit_click(uinput.KEY_E)                              
-                            if portStatus & (1<<5):
+                            if msg.portStatus & (1<<5):
                                 device.emit_click(uinput.KEY_F)                              
-                            if portStatus & (1<<6):
+                            if msg.portStatus & (1<<6):
                                 device.emit_click(uinput.KEY_G)                              
-                            if portStatus & (1<<7):
+                            if msg.portStatus & (1<<7):
                                 device.emit_click(uinput.KEY_H)                              
 
 
                         else:
-                            print(portLetter)
+                            print(msg.portLetter)
 
 
                     device.emit_click(uinput.KEY_HOME)
-                elif chipNumber >= 3 and chipNumber <= 4:
+                elif msg.chipNumber >= 3 and msg.chipNumber <= 4:
                     #parse Front Side Panel buttons
                     print("Parsing Front Side Panel Buttons\n")
-                elif chipNumber >= 5 and chipNumber <= 6:
+                elif msg.chipNumber >= 5 and msg.chipNumber <= 6:
                     #parse Back Side Panel buttons
                     print("Parsing Back Side Panel Buttons\n")
                     device.emit_click(uinput.KEY_B)
@@ -279,11 +295,7 @@ def executeChanges():
     #pass
 
 
-if __name__=="__main__":
-    print("This file is being ran directly")
-    main()
-else:
-    print("This file is being imported")
+
 
 #this function takes the parsed serial message which looks like 0A:XX and interprets the meaning 
 #the first two characters are the chip number and port letter respectively
@@ -292,9 +304,20 @@ def decodeMessage(parsedMessage):
     splitMessage=parsedMessage.split(":")
     if len(splitMessage) == 2:          
         decoded = statusMessage()
-        decoded.chipNumStr = updateMessage[0]    #this is a string
-        decoded.portLetter = updateMessage[0][1]
-        decoded.portStatus = int(updateMessage[1], 16)    #convert string to hex number
+        decoded.chipNumber = int(splitMessage[0][0])
+        decoded.chipNumStr = splitMessage[0]    #this is a string
+        decoded.portLetter = splitMessage[0][1]
+        decoded.portStatus = int(splitMessage[1], 16)    #convert string to hex number
         return decoded
     else:
         return 1    #1 means error
+    
+
+
+
+
+if __name__=="__main__":
+    print("This file is being ran directly")
+    main()
+else:
+    print("This file is being imported")
