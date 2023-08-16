@@ -106,12 +106,12 @@ def main():
             #     timeOutCount = time.perf_counter()
             #     if (timeOutCount - timeOutStart) >= 2:
             #         timeOut = True            
-                    
 
+            #for a period of time, read in the status of all buttons as a result of sending "GSTAT" command to update button status banks
+            timeOutStart = time.perf_counter()
+            timeOut = False                    
             while(status == 0):
-                #for a period of time, read in the status of all buttons as a result of sending "GSTAT" command to update button status banks
-                timeOutStart = time.perf_counter()
-                timeOut = False
+
                 if timeOut == False:
                     status= pollSerialLoop(foundPort,True)
                     timeOutCount = time.perf_counter()
@@ -185,7 +185,7 @@ def pollSerialLoop(connection, ignoreExecute):
                     button_status[int(msg.chipNumStr[0])][0] = hex(msg.portStatus)
                 else: 
                     button_status[int(msg.chipNumStr[0])][1] = hex(msg.portStatus)
-            print("bStatus:" + str(button_status))    
+            print("bStatus:" + str(button_status) + str(ignoreExecute))    
 
             #add updates to execution queue
             if ignoreExecute is False:
@@ -202,18 +202,21 @@ def pollSerialLoop(connection, ignoreExecute):
 def executeChanges():             
     #for each in execute_list:
         if len(execute_list) >= 1:
-            updateMessage = execute_list.pop().split(":")
-            if len(updateMessage) == 2:
+            updateMessage = execute_list.pop()
+            msg = decodeMessage(updateMessage)
+
+            #updateMessage = execute_list.pop().split(":")
+            if msg != 1:
 
                 #parse execution command and process changes in state by playing sounds or sending keypresses 
                 print("run: " + str(updateMessage))
-                msg = decodeMessage(updateMessage)
-                chipNumber = int(updateMessage[0][0])
-                chipNumStr = updateMessage[0]
-                portLetter = updateMessage[0][1]
-                portStatus = int(updateMessage[1], 16)    #convert string to hex number
+                
+                #chipNumber = int(updateMessage[0][0])
+                #chipNumStr = updateMessage[0]
+                #portLetter = updateMessage[0][1]
+                #portStatus = int(updateMessage[1], 16)    #convert string to hex number
                 #print("chip number: " + str(chipNumber))
-
+                
                 for bitshift in range(0, 8):
                     if(msg.portStatus & (1<<bitshift)):
                         print(msg.chipNumStr)
