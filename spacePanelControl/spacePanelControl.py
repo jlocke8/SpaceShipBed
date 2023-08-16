@@ -222,59 +222,12 @@ def executeChanges():
                         print(msg.chipNumStr)
                         print(config.button_uinput_map[msg.chipNumStr][bitshift])
                         device.emit_click(config.button_uinput_map[msg.chipNumStr][bitshift])
-                        print(config.button_sound_map[msg.chipNumStr][bitshift])
+                        print(config.button_sound_map[msg.chipNumStr][bitshift][1])
                         pygame.mixer.Sound(config.button_sound_map[msg.chipNumStr][bitshift][1]).play()
-                    if(~msg.portStatus & ((1<<bitshift)& bitmask)):
+                    if(~msg.portStatus & ((1<<bitshift)& bitmask)):                        
+                        print(config.button_sound_map[msg.chipNumStr][bitshift][1])                        
                         pygame.mixer.Sound(config.button_sound_map[msg.chipNumStr][bitshift][0]).play()
-                        
-                # if msg.chipNumber >= 0 and msg.chipNumber <= 2: 
-                #     #parse Top Panel buttons
-                #     print("Parsing Top Panel Buttons\n")
-
-                #     if msg.chipNumber == 0:
-                #         print(msg.chipNumber)
-
-                #     if msg.chipNumber == 1:
-                #         print(msg.chipNumber)
-
-                #     if msg.chipNumber == 2:
-                #         print(msg.chipNumber)
-
-                #         if msg.portLetter == 'A':
-                #             if msg.portStatus & (1<<0):
-                #                 print(config.button_uinput_map['2A'][0])
-                #                 device.emit_click(config.button_uinput_map['2A'][0])                              
-                #             if msg.portStatus & (1<<1):    
-                #                 device.emit_click(uinput.KEY_B)  
-                #             if msg.portStatus & (1<<2):
-                #                 device.emit_click(uinput.KEY_C)                              
-                #             if msg.portStatus & (1<<3):
-                #                 device.emit_click(uinput.KEY_D)                              
-                #             if msg.portStatus & (1<<4):
-                #                 device.emit_click(uinput.KEY_E)                              
-                #             if msg.portStatus & (1<<5):
-                #                 device.emit_click(uinput.KEY_F)                              
-                #             if msg.portStatus & (1<<6):
-                #                 device.emit_click(uinput.KEY_G)                              
-                #             if msg.portStatus & (1<<7):
-                #                 device.emit_click(uinput.KEY_H)                              
-
-
-                #         else:
-                #             print(msg.portLetter)
-
-
-                #     device.emit_click(uinput.KEY_HOME)
-                # elif msg.chipNumber >= 3 and msg.chipNumber <= 4:
-                #     #parse Front Side Panel buttons
-                #     print("Parsing Front Side Panel Buttons\n")
-                # elif msg.chipNumber >= 5 and msg.chipNumber <= 6:
-                #     #parse Back Side Panel buttons
-                #     print("Parsing Back Side Panel Buttons\n")
-                #     device.emit_click(uinput.KEY_B)
-                # else:
-                #     #invalid input
-                #     print("ERROR: Invalid chip number\n")
+             
 
                 #update button status with the new update
                 button_status[msg.chipNumber][msg.portLetterNum] = msg.portStatus

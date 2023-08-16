@@ -555,7 +555,7 @@ IC5B_sound_map = {
                             1: "./sounds/reactor1On.wav"   #"On" state
                         },
                         1: {
-                            0: "./sounds/startupsequence.wav",
+                            0: "",
                             1: "./sounds/startupsequence.wav"
                         },
                         2:{
