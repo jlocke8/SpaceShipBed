@@ -223,7 +223,10 @@ def executeChanges():
                         print(config.button_uinput_map[msg.chipNumStr][bitshift])
                         device.emit_click(config.button_uinput_map[msg.chipNumStr][bitshift])
                         print(config.button_sound_map[msg.chipNumStr][bitshift])
-                        pygame.mixer.Sound(config.button_sound_map[msg.chipNumStr][bitshift]).play()
+                        pygame.mixer.Sound(config.button_sound_map[msg.chipNumStr][bitshift][1]).play()
+                    if(~msg.portStatus & ((1<<bitshift)& bitmask)):
+                        pygame.mixer.Sound(config.button_sound_map[msg.chipNumStr][bitshift][0]).play()
+                        
                 # if msg.chipNumber >= 0 and msg.chipNumber <= 2: 
                 #     #parse Top Panel buttons
                 #     print("Parsing Top Panel Buttons\n")
