@@ -63,6 +63,7 @@ class statusMessage:
     chipNumber=""
     chipNumStr=""
     portLetter=""
+    portLetterNum=""
     portStatus=""
 
 
@@ -178,19 +179,17 @@ def pollSerialLoop(connection, ignoreExecute):
             parsedMessages = [x for x in readSerial.replace('\n','').replace('\r','').split("#") if x]
             #print(parsedMessages)
 
-            #update the status banks with given information              
-            for eachMsg in parsedMessages:
-                msg = decodeMessage(eachMsg)
-                if msg.portLetter == 'A':
-                    button_status[int(msg.chipNumStr[0])][0] = hex(msg.portStatus)
-                else: 
-                    button_status[int(msg.chipNumStr[0])][1] = hex(msg.portStatus)
-            print("bStatus:" + str(button_status) + str(ignoreExecute))    
-
             #add updates to execution queue
             if ignoreExecute is False:
                 execute_list.extend(parsedMessages)
                 print("exeList:" + str(execute_list))
+            else:
+                #update the status banks with given information (only during update period)
+                for eachMsg in parsedMessages:
+                    msg = decodeMessage(eachMsg)
+                    button_status[msg.chipNumber][msg.portLetterNum] = msg.portStatus
+                    
+            print("bStatus:" + str(button_status))  
 
     return 0
 
@@ -210,83 +209,72 @@ def executeChanges():
 
                 #parse execution command and process changes in state by playing sounds or sending keypresses 
                 print("run: " + str(updateMessage))
-                
-                #chipNumber = int(updateMessage[0][0])
-                #chipNumStr = updateMessage[0]
-                #portLetter = updateMessage[0][1]
-                #portStatus = int(updateMessage[1], 16)    #convert string to hex number
-                #print("chip number: " + str(chipNumber))
-                
+
+                #xor updated status with saved button status in order to get the bitmask of changes
+                print(msg.portStatus)
+                print(button_status[msg.chipNumber][msg.portLetterNum])
+                bitmask = msg.portStatus ^ button_status[msg.chipNumber][msg.portLetterNum]
+
+                print(bitmask)
+                print(bin(bitmask))             
                 for bitshift in range(0, 8):
-                    if(msg.portStatus & (1<<bitshift)):
+                    if(msg.portStatus & ((1<<bitshift) & bitmask)):
                         print(msg.chipNumStr)
                         print(config.button_uinput_map[msg.chipNumStr][bitshift])
                         device.emit_click(config.button_uinput_map[msg.chipNumStr][bitshift])
                         print(config.button_sound_map[msg.chipNumStr][bitshift])
                         pygame.mixer.Sound(config.button_sound_map[msg.chipNumStr][bitshift]).play()
-                if msg.chipNumber >= 0 and msg.chipNumber <= 2: 
-                    #parse Top Panel buttons
-                    print("Parsing Top Panel Buttons\n")
+                # if msg.chipNumber >= 0 and msg.chipNumber <= 2: 
+                #     #parse Top Panel buttons
+                #     print("Parsing Top Panel Buttons\n")
 
-                    if msg.chipNumber == 0:
-                        print(msg.chipNumber)
+                #     if msg.chipNumber == 0:
+                #         print(msg.chipNumber)
 
-                        if msg.portLetter == 'A':
-                            print(msg.portLetter)
-                        else:
-                            print(msg.portLetter)
+                #     if msg.chipNumber == 1:
+                #         print(msg.chipNumber)
 
-                    if msg.chipNumber == 1:
-                        print(msg.chipNumber)
+                #     if msg.chipNumber == 2:
+                #         print(msg.chipNumber)
 
-                        if msg.portLetter == 'A':
-                            print(msg.portLetter)
-                        else:
-                            print(msg.portLetter)
-
-                    if msg.chipNumber == 2:
-                        print(msg.chipNumber)
-
-                        if msg.portLetter == 'A':
-                            if msg.portStatus & (1<<0):
-                                print(config.button_uinput_map['2A'][0])
-                                device.emit_click(config.button_uinput_map['2A'][0])                              
-                            if msg.portStatus & (1<<1):    
-                                device.emit_click(uinput.KEY_B)  
-                            if msg.portStatus & (1<<2):
-                                device.emit_click(uinput.KEY_C)                              
-                            if msg.portStatus & (1<<3):
-                                device.emit_click(uinput.KEY_D)                              
-                            if msg.portStatus & (1<<4):
-                                device.emit_click(uinput.KEY_E)                              
-                            if msg.portStatus & (1<<5):
-                                device.emit_click(uinput.KEY_F)                              
-                            if msg.portStatus & (1<<6):
-                                device.emit_click(uinput.KEY_G)                              
-                            if msg.portStatus & (1<<7):
-                                device.emit_click(uinput.KEY_H)                              
+                #         if msg.portLetter == 'A':
+                #             if msg.portStatus & (1<<0):
+                #                 print(config.button_uinput_map['2A'][0])
+                #                 device.emit_click(config.button_uinput_map['2A'][0])                              
+                #             if msg.portStatus & (1<<1):    
+                #                 device.emit_click(uinput.KEY_B)  
+                #             if msg.portStatus & (1<<2):
+                #                 device.emit_click(uinput.KEY_C)                              
+                #             if msg.portStatus & (1<<3):
+                #                 device.emit_click(uinput.KEY_D)                              
+                #             if msg.portStatus & (1<<4):
+                #                 device.emit_click(uinput.KEY_E)                              
+                #             if msg.portStatus & (1<<5):
+                #                 device.emit_click(uinput.KEY_F)                              
+                #             if msg.portStatus & (1<<6):
+                #                 device.emit_click(uinput.KEY_G)                              
+                #             if msg.portStatus & (1<<7):
+                #                 device.emit_click(uinput.KEY_H)                              
 
 
-                        else:
-                            print(msg.portLetter)
+                #         else:
+                #             print(msg.portLetter)
 
 
-                    device.emit_click(uinput.KEY_HOME)
-                elif msg.chipNumber >= 3 and msg.chipNumber <= 4:
-                    #parse Front Side Panel buttons
-                    print("Parsing Front Side Panel Buttons\n")
-                elif msg.chipNumber >= 5 and msg.chipNumber <= 6:
-                    #parse Back Side Panel buttons
-                    print("Parsing Back Side Panel Buttons\n")
-                    device.emit_click(uinput.KEY_B)
-                else:
-                    #invalid input
-                    print("ERROR: Invalid chip number\n")
+                #     device.emit_click(uinput.KEY_HOME)
+                # elif msg.chipNumber >= 3 and msg.chipNumber <= 4:
+                #     #parse Front Side Panel buttons
+                #     print("Parsing Front Side Panel Buttons\n")
+                # elif msg.chipNumber >= 5 and msg.chipNumber <= 6:
+                #     #parse Back Side Panel buttons
+                #     print("Parsing Back Side Panel Buttons\n")
+                #     device.emit_click(uinput.KEY_B)
+                # else:
+                #     #invalid input
+                #     print("ERROR: Invalid chip number\n")
 
-                #process changes in state by playing sounds or espeaking
-              
-                #pygame.mixer.Sound("gauss.wav").play()
-
+                #update button status with the new update
+                button_status[msg.chipNumber][msg.portLetterNum] = msg.portStatus
             else:
                 print("ERROR! Invalid update message: " + str(updateMessage))
 
@@ -308,8 +296,13 @@ def decodeMessage(parsedMessage):
     if len(splitMessage) == 2:          
         decoded = statusMessage()
         decoded.chipNumber = int(splitMessage[0][0])
-        decoded.chipNumStr = splitMessage[0]    #this is a string
+        decoded.chipNumStr = splitMessage[0]    #this is a string which includes chip number + portLetter
         decoded.portLetter = splitMessage[0][1]
+        if decoded.portLetter == 'B':
+            decoded.portLetterNum = 1
+        else:
+            decoded.portLetterNum = 0
+
         decoded.portStatus = int(splitMessage[1], 16)    #convert string to hex number
         return decoded
     else:
