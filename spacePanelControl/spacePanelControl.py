@@ -14,7 +14,7 @@ import config       #external python file which holds configuration dictionaries
 status_top_panel = list()
 status_backside_panel = list()
 status_frontside_panel = list()
-button_status = [[hex(0x00) for x in range(2)] for y in range(8)]   #initialize 8x2 two dimensional array
+button_status = [[0 for x in range(2)] for y in range(8)]   #initialize 8x2 two dimensional array
 execute_list = list()
 
 

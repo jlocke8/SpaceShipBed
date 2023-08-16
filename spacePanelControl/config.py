@@ -275,12 +275,12 @@ IC1A_sound_map = {
                             1: "./sounds/startupsequence.wav"
                         },
                         6:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/autotargetOff.wav",
+                            1: "./sounds/autotargetOn.wav"
                         },
                         7:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/toepowerOff.wav",
+                            1: "./sounds/toepowerOn.wav"
                         }
                     }  
 
@@ -325,32 +325,32 @@ IC2A_sound_map = {
                             1: "./sounds/startupsequence.wav"   #"On" state
                         },
                         1: {
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "",
+                            1: "./sounds/toes.wav"
                         },
                         2:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/veganfart.mp3",
+                            1: "./sounds/atootieOn.wav"
                         },
                         3:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/wetfart.mp3",
+                            1: "./sounds/buttcrack.wav"
                         },
                         4:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "",
+                            1: "./sounds/driedpee.wav"
                         },
                         5:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/chargefart.mp3",
+                            1: "./sounds/poop.wav"
                         },
                         6:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "",
+                            1: "./sounds/footface.wav"
                         },
                         7:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "",
+                            1: "./sounds/dabadu.wav"
                         }
                     }  
 
