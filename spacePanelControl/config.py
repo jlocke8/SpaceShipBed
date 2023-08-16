@@ -2,150 +2,165 @@
 import uinput
 import pygame
 import enum 
+
 #TOP PANEL
-IC0A_uinput_map = {     0: uinput.KEY_0,
-                        1: uinput.KEY_0,
-                        2: uinput.KEY_0,
-                        3: uinput.KEY_0,
-                        4: uinput.KEY_0,
-                        5: uinput.KEY_0,
-                        6: uinput.KEY_0,
-                        7: uinput.KEY_0,
-                        }
+IC0A_uinput_map =   {     
+                        0: {"polarity": 1, "key": uinput.KEY_0},    #polarity 1 means button is actuated when signal high, polarity 0, is button is actuated when signal is low
+                        1: {"polarity": 1, "key": uinput.KEY_0},    #some buttons require a specific polarity setting to actuate when pressed as opposed to actuate when released
+                        2: {"polarity": 1, "key": uinput.KEY_0},
+                        3: {"polarity": 1, "key": uinput.KEY_0},
+                        4: {"polarity": 1, "key": uinput.KEY_0},
+                        5: {"polarity": 1, "key": uinput.KEY_0},
+                        6: {"polarity": 1, "key": uinput.KEY_0},
+                        7: {"polarity": 1, "key": uinput.KEY_0}
+                    }
 #TOP PANEL
-IC0B_uinput_map = {     0: uinput.KEY_0,
-                        1: uinput.KEY_0,
-                        2: uinput.KEY_0,
-                        3: uinput.KEY_0,
-                        4: uinput.KEY_0,
-                        5: uinput.KEY_0,
-                        6: uinput.KEY_0,
-                        7: uinput.KEY_0,
-                        }  
+IC0B_uinput_map =   {     
+                        0: {"polarity": 1, "key": uinput.KEY_0},
+                        1: {"polarity": 1, "key": uinput.KEY_0},
+                        2: {"polarity": 1, "key": uinput.KEY_0},
+                        3: {"polarity": 1, "key": uinput.KEY_0},
+                        4: {"polarity": 0, "key": uinput.KEY_0},
+                        5: {"polarity": 0, "key": uinput.KEY_0},
+                        6: {"polarity": 0, "key": uinput.KEY_0},
+                        7: {"polarity": 0, "key": uinput.KEY_0}
+                    }  
 #TOP PANEL
-IC1A_uinput_map = {     0: uinput.KEY_S,
-                        1: uinput.KEY_0,
-                        2: uinput.KEY_0,
-                        3: uinput.KEY_0,
-                        4: uinput.KEY_0,
-                        5: uinput.KEY_0,
-                        6: uinput.KEY_0,
-                        7: uinput.KEY_0,
-                        }
+IC1A_uinput_map =   {     
+                        0: {"polarity": 1, "key": uinput.KEY_0},
+                        1: {"polarity": 1, "key": uinput.KEY_0},
+                        2: {"polarity": 1, "key": uinput.KEY_0},
+                        3: {"polarity": 1, "key": uinput.KEY_0},
+                        4: {"polarity": 1, "key": uinput.KEY_0},
+                        5: {"polarity": 1, "key": uinput.KEY_0},
+                        6: {"polarity": 1, "key": uinput.KEY_0},
+                        7: {"polarity": 1, "key": uinput.KEY_0}
+                    }
 #TOP PANEL
-IC1B_uinput_map = {     0: uinput.KEY_0,
-                        1: uinput.KEY_0,
-                        2: uinput.KEY_0,
-                        3: uinput.KEY_0,
-                        4: uinput.KEY_0,
-                        5: uinput.KEY_0,
-                        6: uinput.KEY_0,
-                        7: uinput.KEY_0,
-                        }                          
+IC1B_uinput_map =   {     
+                        0: {"polarity": 1, "key": uinput.KEY_0},
+                        1: {"polarity": 1, "key": uinput.KEY_0},
+                        2: {"polarity": 1, "key": uinput.KEY_0},
+                        3: {"polarity": 1, "key": uinput.KEY_0},
+                        4: {"polarity": 0, "key": uinput.KEY_0},
+                        5: {"polarity": 0, "key": uinput.KEY_0},
+                        6: {"polarity": 0, "key": uinput.KEY_0},
+                        7: {"polarity": 0, "key": uinput.KEY_0}
+                    }
 #TOP PANEL
-IC2A_uinput_map = {     0: uinput.KEY_A,
-                        1: uinput.KEY_B,
-                        2: uinput.KEY_C,
-                        3: uinput.KEY_D,
-                        4: uinput.KEY_E,
-                        5: uinput.KEY_F,
-                        6: uinput.KEY_G,
-                        7: uinput.KEY_H,
-                        }
+IC2A_uinput_map =   {     
+                        0: {"polarity": 1, "key": uinput.KEY_0},
+                        1: {"polarity": 1, "key": uinput.KEY_0},
+                        2: {"polarity": 1, "key": uinput.KEY_0},
+                        3: {"polarity": 1, "key": uinput.KEY_0},
+                        4: {"polarity": 1, "key": uinput.KEY_0},
+                        5: {"polarity": 1, "key": uinput.KEY_0},
+                        6: {"polarity": 1, "key": uinput.KEY_0},
+                        7: {"polarity": 1, "key": uinput.KEY_0}
+                    }
 #TOP PANEL
-IC2B_uinput_map = {     0: uinput.KEY_A,
-                        1: uinput.KEY_B,
-                        2: uinput.KEY_C,
-                        3: uinput.KEY_D,
-                        4: uinput.KEY_E,
-                        5: uinput.KEY_F,
-                        6: uinput.KEY_G,
-                        7: uinput.KEY_H,
-                        }  
+IC2B_uinput_map =   {     
+                        0: {"polarity": 1, "key": uinput.KEY_0},
+                        1: {"polarity": 1, "key": uinput.KEY_0},
+                        2: {"polarity": 1, "key": uinput.KEY_0},
+                        3: {"polarity": 1, "key": uinput.KEY_0},
+                        4: {"polarity": 0, "key": uinput.KEY_0},
+                        5: {"polarity": 0, "key": uinput.KEY_0},
+                        6: {"polarity": 0, "key": uinput.KEY_0},
+                        7: {"polarity": 0, "key": uinput.KEY_0}
+                    }  
 #FRONT SIDE PANEL
-IC3A_uinput_map = {     0: uinput.KEY_0,
-                        1: uinput.KEY_0,
-                        2: uinput.KEY_0,
-                        3: uinput.KEY_0,
-                        4: uinput.KEY_0,
-                        5: uinput.KEY_0,
-                        6: uinput.KEY_0,
-                        7: uinput.KEY_0,
-                        }
+IC3A_uinput_map =   {     
+                        0: {"polarity": 1, "key": uinput.KEY_0},
+                        1: {"polarity": 1, "key": uinput.KEY_0},
+                        2: {"polarity": 1, "key": uinput.KEY_0},
+                        3: {"polarity": 1, "key": uinput.KEY_0},
+                        4: {"polarity": 1, "key": uinput.KEY_0},
+                        5: {"polarity": 1, "key": uinput.KEY_0},
+                        6: {"polarity": 1, "key": uinput.KEY_0},
+                        7: {"polarity": 1, "key": uinput.KEY_0}
+                    }
 #FRONT SIDE PANEL
-IC3B_uinput_map = {     0: uinput.KEY_0,
-                        1: uinput.KEY_0,
-                        2: uinput.KEY_0,
-                        3: uinput.KEY_0,
-                        4: uinput.KEY_0,
-                        5: uinput.KEY_0,
-                        6: uinput.KEY_0,
-                        7: uinput.KEY_0,
-                        }  
+IC3B_uinput_map =   {     
+                        0: {"polarity": 1, "key": uinput.KEY_0},
+                        1: {"polarity": 1, "key": uinput.KEY_0},
+                        2: {"polarity": 1, "key": uinput.KEY_0},
+                        3: {"polarity": 1, "key": uinput.KEY_0},
+                        4: {"polarity": 1, "key": uinput.KEY_0},
+                        5: {"polarity": 1, "key": uinput.KEY_0},
+                        6: {"polarity": 1, "key": uinput.KEY_0},
+                        7: {"polarity": 1, "key": uinput.KEY_0}
+                    }  
 #FRONT SIDE PANEL
-IC4A_uinput_map = {     0: uinput.KEY_0,
-                        1: uinput.KEY_0,
-                        2: uinput.KEY_0,
-                        3: uinput.KEY_0,
-                        4: uinput.KEY_0,
-                        5: uinput.KEY_0,
-                        6: uinput.KEY_0,
-                        7: uinput.KEY_0,
-                        }
+IC4A_uinput_map =   {     
+                        0: {"polarity": 1, "key": uinput.KEY_0},
+                        1: {"polarity": 1, "key": uinput.KEY_0},
+                        2: {"polarity": 1, "key": uinput.KEY_0},
+                        3: {"polarity": 1, "key": uinput.KEY_0},
+                        4: {"polarity": 1, "key": uinput.KEY_0},
+                        5: {"polarity": 1, "key": uinput.KEY_0},
+                        6: {"polarity": 1, "key": uinput.KEY_0},
+                        7: {"polarity": 1, "key": uinput.KEY_0}
+                    }
 #FRONT SIDE PANEL
-IC4B_uinput_map = {     0: uinput.KEY_0,
-                        1: uinput.KEY_0,
-                        2: uinput.KEY_0,
-                        3: uinput.KEY_0,
-                        4: uinput.KEY_0,
-                        5: uinput.KEY_0,
-                        6: uinput.KEY_0,
-                        7: uinput.KEY_0,
-                        }  
+IC4B_uinput_map =   {     
+                        0: {"polarity": 1, "key": uinput.KEY_0},
+                        1: {"polarity": 1, "key": uinput.KEY_0},
+                        2: {"polarity": 1, "key": uinput.KEY_0},
+                        3: {"polarity": 1, "key": uinput.KEY_0},
+                        4: {"polarity": 1, "key": uinput.KEY_0},
+                        5: {"polarity": 1, "key": uinput.KEY_0},
+                        6: {"polarity": 1, "key": uinput.KEY_0},
+                        7: {"polarity": 1, "key": uinput.KEY_0}
+                    }
 #BACK SIDE PANEL
-IC5A_uinput_map = {     0: uinput.KEY_0,
-                        1: uinput.KEY_0,
-                        2: uinput.KEY_0,
-                        3: uinput.KEY_0,
-                        4: uinput.KEY_0,
-                        5: uinput.KEY_0,
-                        6: uinput.KEY_0,
-                        7: uinput.KEY_0,
-                        }
+IC5A_uinput_map =   {     
+                        0: {"polarity": 1, "key": uinput.KEY_0},
+                        1: {"polarity": 1, "key": uinput.KEY_0},
+                        2: {"polarity": 1, "key": uinput.KEY_0},
+                        3: {"polarity": 0, "key": uinput.KEY_0},
+                        4: {"polarity": 0, "key": uinput.KEY_0},
+                        5: {"polarity": 0, "key": uinput.KEY_0},
+                        6: {"polarity": 0, "key": uinput.KEY_0},
+                        7: {"polarity": 1, "key": uinput.KEY_0}
+                    }
 #BACK SIDE PANEL
-IC5B_uinput_map = {     0: uinput.KEY_0,
-                        1: uinput.KEY_0,
-                        2: uinput.KEY_0,
-                        3: uinput.KEY_0,
-                        4: uinput.KEY_0,
-                        5: uinput.KEY_0,
-                        6: uinput.KEY_0,
-                        7: uinput.KEY_0,
-                        }  
+IC5B_uinput_map =   {     
+                        0: {"polarity": 1, "key": uinput.KEY_0},
+                        1: {"polarity": 1, "key": uinput.KEY_0},
+                        2: {"polarity": 1, "key": uinput.KEY_0},
+                        3: {"polarity": 1, "key": uinput.KEY_0},
+                        4: {"polarity": 1, "key": uinput.KEY_0},
+                        5: {"polarity": 1, "key": uinput.KEY_0},
+                        6: {"polarity": 0, "key": uinput.KEY_0},
+                        7: {"polarity": 0, "key": uinput.KEY_0}
+                    }
 #BACK SIDE PANEL
-IC6A_uinput_map = {     0: uinput.KEY_0,
-                        1: uinput.KEY_0,
-                        2: uinput.KEY_0,
-                        3: uinput.KEY_0,
-                        4: uinput.KEY_0,
-                        5: uinput.KEY_0,
-                        6: uinput.KEY_0,
-                        7: uinput.KEY_0,
-                        }
+IC6A_uinput_map =   {     
+                        0: {"polarity": 1, "key": uinput.KEY_0},
+                        1: {"polarity": 1, "key": uinput.KEY_0},
+                        2: {"polarity": 1, "key": uinput.KEY_0},
+                        3: {"polarity": 1, "key": uinput.KEY_0},
+                        4: {"polarity": 1, "key": uinput.KEY_0},
+                        5: {"polarity": 1, "key": uinput.KEY_0},
+                        6: {"polarity": 1, "key": uinput.KEY_0},
+                        7: {"polarity": 1, "key": uinput.KEY_0}
+                    }
 #BACK SIDE PANEL
-IC6B_uinput_map = {     0: uinput.KEY_0,
-                        1: uinput.KEY_0,
-                        2: uinput.KEY_0,
-                        3: uinput.KEY_0,
-                        4: uinput.KEY_0,
-                        5: uinput.KEY_0,
-                        6: uinput.KEY_0,
-                        7: uinput.KEY_0,
-                        }  
+IC6B_uinput_map =   {     
+                        0: {"polarity": 1, "key": uinput.KEY_0},
+                        1: {"polarity": 1, "key": uinput.KEY_0},
+                        2: {"polarity": 1, "key": uinput.KEY_0},
+                        3: {"polarity": 1, "key": uinput.KEY_0},
+                        4: {"polarity": 1, "key": uinput.KEY_0},
+                        5: {"polarity": 1, "key": uinput.KEY_0},
+                        6: {"polarity": 1, "key": uinput.KEY_0},
+                        7: {"polarity": 1, "key": uinput.KEY_0}
+                    }
 
 #create dictionary to hold uinput mappings
 button_uinput_map = {   
-			'0A':IC0A_uinput_map,
+			            '0A':IC0A_uinput_map,
                         '0B':IC0B_uinput_map,
                         '1A':IC1A_uinput_map, 
                         '1B':IC1B_uinput_map,
@@ -159,7 +174,7 @@ button_uinput_map = {
                         '5B':IC5B_uinput_map,
                         '6A':IC6A_uinput_map,
                         '6B':IC6B_uinput_map,
-                        }
+                    }
 
 
 #Key to sound maps
@@ -306,7 +321,7 @@ IC1B_sound_map = {
 
 IC2A_sound_map = {     
 			            0: { #Port's Position Number
-                            0: "./sounds/startupsequence.wav",  #"Off" state, note some buttons have negative polarity and off is on!  
+                            0: "",  #"Off" state, note some buttons have negative polarity and off is on!  
                             1: "./sounds/startupsequence.wav"   #"On" state
                         },
                         1: {

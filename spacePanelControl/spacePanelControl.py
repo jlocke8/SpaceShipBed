@@ -22,7 +22,7 @@ execute_list = list()
 uinputlist = []
 for key in config.button_uinput_map:    #get each top level key in dictionary
     for subkey in config.button_uinput_map[key]:    #for each top level key, enter toplevel key and get every subkey
-        uinputlist.append(config.button_uinput_map[key][subkey])  #get each item in nested dictionary
+        uinputlist.append(config.button_uinput_map[key][subkey]["key"])  #get each item in nested dictionary
 print(uinputlist)
 
 #configure uinput virtual keyboard using the uinput key definitions
@@ -219,15 +219,30 @@ def executeChanges():
                 print(bin(bitmask))             
                 for bitshift in range(0, 8):
                     if(msg.portStatus & ((1<<bitshift) & bitmask)):
-                        print(msg.chipNumStr)
-                        print(config.button_uinput_map[msg.chipNumStr][bitshift])
-                        device.emit_click(config.button_uinput_map[msg.chipNumStr][bitshift])
-                        print(config.button_sound_map[msg.chipNumStr][bitshift][1])
-                        pygame.mixer.Sound(config.button_sound_map[msg.chipNumStr][bitshift][1]).play()
+                        
+                        if config.button_uinput_map[msg.chipNumStr][bitshift]["polarity"] == 1:
+                            try:
+                                device.emit_click(config.button_uinput_map[msg.chipNumStr][bitshift]["key"])
+                            except Exception:
+                                pass
+
+                        try:
+                            pygame.mixer.Sound(config.button_sound_map[msg.chipNumStr][bitshift][1]).play()
+                        except Exception:
+                            pass
+                        
                     if(~msg.portStatus & ((1<<bitshift)& bitmask)):                        
-                        print(config.button_sound_map[msg.chipNumStr][bitshift][1])                        
-                        pygame.mixer.Sound(config.button_sound_map[msg.chipNumStr][bitshift][0]).play()
-             
+                                  
+                        if config.button_uinput_map[msg.chipNumStr][bitshift]["polarity"] == 0:
+                            try:
+                                device.emit_click(config.button_uinput_map[msg.chipNumStr][bitshift]["key"])   
+                            except Exception:
+                                pass
+
+                        try:
+                            pygame.mixer.Sound(config.button_sound_map[msg.chipNumStr][bitshift][0]).play()
+                        except Exception:
+                            pass
 
                 #update button status with the new update
                 button_status[msg.chipNumber][msg.portLetterNum] = msg.portStatus
