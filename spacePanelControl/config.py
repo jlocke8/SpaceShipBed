@@ -181,98 +181,98 @@ button_uinput_map = {
 
 IC0A_sound_map = {     
 			            0: { #Port's Position Number
-                            0: "./sounds/startupsequence.wav",  #"Off" state, note some buttons have negative polarity and off is on!  
-                            1: "./sounds/startupsequence.wav"   #"On" state
+                            0: "",  #"Off" state, note some buttons have negative polarity and off is on!  
+                            1: ""   #"On" state
                         },
                         1: {
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "",
+                            1: "./sounds/nuke.wav"
                         },
                         2:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "",
+                            1: "./sounds/plasmabomb.wav"
                         },
                         3:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "",
+                            1: "./sounds/pulselaser.wav"
                         },
                         4:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "",
+                            1: "./sounds/deathray.wav"
                         },
                         5:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "",
+                            1: "./sounds/hyperdisintegratorcannon.wav"
                         },
                         6:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "",
+                            1: "./sounds/gausscannon.wav"
                         },
                         7:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "",
+                            1: "./sounds/autocannon.wav"
                         }
                     }  
 
 IC0B_sound_map = {     
 			            0: { #Port's Position Number
-                            0: "./sounds/startupsequence.wav",  #"Off" state, note some buttons have negative polarity and off is on!  
-                            1: "./sounds/startupsequence.wav"   #"On" state
+                            0: "./sounds/apu1Off.wav",  #"Off" state, note some buttons have negative polarity and off is on!  
+                            1: "./sounds/apu1On.wav"   #"On" state
                         },
                         1: {
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/",
+                            1: "./sounds/"
                         },
                         2:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/",
+                            1: "./sounds/"
                         },
                         3:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/fuelpump1Off.wav",
+                            1: "./sounds/fuelpump1On.wav"
                         },
                         4:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "",
+                            1: ""
                         },
                         5:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/jettison.wav",
+                            1: ""
                         },
                         6:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/cruisemissile.wav",
+                            1: ""
                         },
                         7:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/torpedo.wav",
+                            1: ""
                         }
                     }  
 
 IC1A_sound_map = {     
 			            0: { #Port's Position Number
-                            0: "./sounds/startupsequence.wav",  #"Off" state, note some buttons have negative polarity and off is on!  
-                            1: "./sounds/startupsequence.wav"   #"On" state
+                            0: "./sounds/firepowerOff.wav",  #"Off" state, note some buttons have negative polarity and off is on!  
+                            1: "./sounds/firepowerOn.wav"   #"On" state
                         },
                         1: {
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/lightbulbpowerOff.wav",
+                            1: "./sounds/lightbulbpowerOn.wav"
                         },
                         2:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/littlepigpowerOff.wav",
+                            1: "./sounds/littlepigpowerOn.wav"
                         },
                         3:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/treepowerOff.wav",
+                            1: "./sounds/treepowerOn.wav"
                         },
                         4:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/monsterpowerOff.wav",
+                            1: "./sounds/monsterpowerOn.wav"
                         },
                         5:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/totoropowerOff.wav",
+                            1: "./sounds/totoropowerOn.wav"
                         },
                         6:{
                             0: "./sounds/autotargetOff.wav",
@@ -286,43 +286,43 @@ IC1A_sound_map = {
 
 IC1B_sound_map = {     
 			            0: { #Port's Position Number
-                            0: "./sounds/startupsequence.wav",  #"Off" state, note some buttons have negative polarity and off is on!  
-                            1: "./sounds/startupsequence.wav"   #"On" state
+                            0: "./sounds/thrusters1Off.wav",  #"Off" state, note some buttons have negative polarity and off is on!  
+                            1: "./sounds/thrusters1On.wav"   #"On" state
                         },
                         1: {
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/mainengine1Off.wav",
+                            1: "./sounds/mainengine1On.wav"
                         },
                         2:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/mainengine2Off.wav",
+                            1: "./sounds/mainengine2On.wav"
                         },
                         3:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/thrusters2Off.wav",
+                            1: "./sounds/thrusters2On.wav"
                         },
                         4:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/retrorocket1On.wav",
+                            1: "./sounds/retrorocket1Off.wav"
                         },
                         5:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/retrorocket2On.wav",
+                            1: "./sounds/retrorocket2Off.wav"
                         },
                         6:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/stabilizer1On.wav",
+                            1: "./sounds/stabilizer1Off.wav"
                         },
                         7:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/stabilizer2On.wav",
+                            1: "./sounds/stabilizer2Off.wav"
                         }
                     }  
 
 IC2A_sound_map = {     
 			            0: { #Port's Position Number
                             0: "",  #"Off" state, note some buttons have negative polarity and off is on!  
-                            1: "./sounds/startupsequence.wav"   #"On" state
+                            1: ""   #"On" state
                         },
                         1: {
                             0: "",
@@ -337,7 +337,7 @@ IC2A_sound_map = {
                             1: "./sounds/buttcrack.wav"
                         },
                         4:{
-                            0: "",
+                            0: "./sounds/steam-release.mp3",
                             1: "./sounds/driedpee.wav"
                         },
                         5:{
@@ -349,140 +349,141 @@ IC2A_sound_map = {
                             1: "./sounds/footface.wav"
                         },
                         7:{
-                            0: "",
+                            0: "./sounds/fart_echo.mp3",
                             1: "./sounds/dabadu.wav"
                         }
                     }  
 
 IC2B_sound_map = {     
 			            0: { #Port's Position Number
-                            0: "./sounds/startupsequence.wav",  #"Off" state, note some buttons have negative polarity and off is on!  
-                            1: "./sounds/startupsequence.wav"   #"On" state
+                            0: "./sounds/apu2Off.wav",  #"Off" state, note some buttons have negative polarity and off is on!  
+                            1: "./sounds/apu2On.wav"   #"On" state
                         },
                         1: {
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/",
+                            1: "./sounds/"
                         },
                         2:{
                             0: "./sounds/startupsequence.wav",
                             1: "./sounds/startupsequence.wav"
                         },
                         3:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/fuelpump2Off.wav",
+                            1: "./sounds/fuelpump2On.wav"
                         },
                         4:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/",
+                            1: "./sounds/"
                         },
                         5:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/",
+                            1: "./sounds/"
                         },
                         6:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/",
+                            1: "./sounds/"
                         },
                         7:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/",
+                            1: "./sounds/"
                         }
                     }  
 
 IC3A_sound_map = {     
 			            0: { #Port's Position Number
-                            0: "./sounds/startupsequence.wav",  #"Off" state, note some buttons have negative polarity and off is on!  
-                            1: "./sounds/startupsequence.wav"   #"On" state
+                            0: "./sounds/extlightsOff.wav",  #"Off" state, note some buttons have negative polarity and off is on!  
+                            1: "./sounds/extlightsOn.wav"   #"On" state
                         },
                         1: {
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/heaterOff.wav",
+                            1: "./sounds/heaterOn.wav"
                         },
                         2:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/airconOff.wav",
+                            1: "./sounds/airconOn.wav"
                         },
                         3:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/filterOff.wav",
+                            1: "./sounds/filterOn.wav"
                         },
                         4:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/cloakOff.wav",
+                            1: "./sounds/cloakOn.wav"
                         },
                         5:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/targetingOff.wav",
+                            1: "./sounds/targetingOn.wav"
                         },
                         6:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/jammerOff.wav",
+                            1: "./sounds/jammerOn.wav"
                         },
                         7:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/proximityOff.wav",
+                            1: "./sounds/proximityOn.wav"
                         }
+                        
                     }  
 
-IC3B_sound_map = {     
-			            0: { #Port's Position Number
-                            0: "./sounds/startupsequence.wav",  #"Off" state, note some buttons have negative polarity and off is on!  
-                            1: "./sounds/startupsequence.wav"   #"On" state
+IC3B_sound_map = {                        
+                        0: { #Port's Position Number
+                            0: "./sounds/radarOff.wav",  #"Off" state, note some buttons have negative polarity and off is on!  
+                            1: "./sounds/radarOn.wav"   #"On" state
                         },
                         1: {
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/beaconOff.wav",
+                            1: "./sounds/beaconOn.wav"
                         },
                         2:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/gyroscopeOff.wav",
+                            1: "./sounds/gyroscopeOn.wav"
                         },
                         3:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/radioOff.wav",
+                            1: "./sounds/radioOn.wav"
                         },
                         4:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/microphoneOff.wav",
+                            1: "./sounds/microphoneOn.wav"
                         },
                         5:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/autopilotOff.wav",
+                            1: "./sounds/autopilotOn.wav"
                         },
                         6:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/lapoopooOff.wav",
+                            1: "./sounds/lapoopooOn.wav"
                         },
                         7:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/tranceiverOff.wav",
+                            1: "./sounds/tranceiverOn.wav"
                         }
                     }  
 
 IC4A_sound_map = {     
 			            0: { #Port's Position Number
-                            0: "./sounds/startupsequence.wav",  #"Off" state, note some buttons have negative polarity and off is on!  
-                            1: "./sounds/startupsequence.wav"   #"On" state
+                            0: "./sounds/phasedarray1Off.wav",  #"Off" state, note some buttons have negative polarity and off is on!  
+                            1: "./sounds/phasedarray1On.wav"   #"On" state
                         },
                         1: {
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/phasedarray2Off.wav",
+                            1: "./sounds/phasedarray2On.wav"
                         },
                         2:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/comlink1Off.wav",
+                            1: "./sounds/comlink1On.wav"
                         },
                         3:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/comlink2Off.wav",
+                            1: "./sounds/comlink2On.wav"
                         },
                         4:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/forwardshieldsOff.wav",
+                            1: "./sounds/forwardshieldsOn.wav"
                         },
                         5:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/aftshieldsOff.wav",
+                            1: "./sounds/aftshieldsOn.wav"
                         },
                         6:{
                             0: "./sounds/startupsequence.wav",
@@ -531,36 +532,36 @@ IC4B_sound_map = {
 
 IC5A_sound_map = {     
 			            0: { #Port's Position Number
-                            0: "./sounds/startupsequence.wav",  #"Off" state, note some buttons have negative polarity and off is on!  
-                            1: "./sounds/startupsequence.wav"   #"On" state
+                            0: "./sounds/lifesupportOff.wav",  #"Off" state, note some buttons have negative polarity and off is on!  
+                            1: "./sounds/lifesupportOn.wav"   #"On" state
                         },
                         1: {
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/powerbankOff.wav",
+                            1: "./sounds/powerbankOn.wav"
                         },
                         2:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/booboojuiceOff.wav",
+                            1: "./sounds/booboojuiceOn.wav"
                         },
                         3:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/cellsmainOff.wav",
+                            1: "./sounds/cellsmainOn.wav"
                         },
                         4:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/cellsauxOff.wav",
+                            1: "./sounds/cellsauxOn.wav"
                         },
                         5:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/atootieOff.wav",
+                            1: "./sounds/atootieOn.wav"
                         },
                         6:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/footytoeOff.wav",
+                            1: "./sounds/footytoeOn.wav"
                         },
                         7:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/",
+                            1: "./sounds/"
                         }
                     }  
 
@@ -570,32 +571,32 @@ IC5B_sound_map = {
                             1: "./sounds/reactor1On.wav"   #"On" state
                         },
                         1: {
-                            0: "",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/pump1Off.wav",
+                            1: "./sounds/pump1On.wav"
                         },
                         2:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/generator1Off.wav",
+                            1: "./sounds/generator1On.wav"
                         },
                         3:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/reactor2Off.wav",
+                            1: "./sounds/reactor2On.wav"
                         },
                         4:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/pump2Off.wav",
+                            1: "./sounds/pump2On.wav"
                         },
                         5:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/generator2Off.wav",
+                            1: "./sounds/generator2On.wav"
                         },
                         6:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/o2synthOff.wav",
+                            1: "./sounds/o2synthOn.wav"
                         },
                         7:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/co2scrubberOff.wav",
+                            1: "./sounds/co2scrubberOn.wav"
                         }
                     }  
 
@@ -636,36 +637,36 @@ IC6A_sound_map = {
 
 IC6B_sound_map = {     
 			            0: { #Port's Position Number
-                            0: "./sounds/startupsequence.wav",  #"Off" state, note some buttons have negative polarity and off is on!  
-                            1: "./sounds/startupsequence.wav"   #"On" state
+                            0: "./sounds/",  #"Off" state, note some buttons have negative polarity and off is on!  
+                            1: "./sounds/"   #"On" state
                         },
                         1: {
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/",
+                            1: "./sounds/"
                         },
                         2:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/",
+                            1: "./sounds/"
                         },
                         3:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/",
+                            1: "./sounds/"
                         },
                         4:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/",
+                            1: "./sounds/"
                         },
                         5:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/",
+                            1: "./sounds/"
                         },
                         6:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/",
+                            1: "./sounds/"
                         },
                         7:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/",
+                            1: "./sounds/"
                         }
                     }  
 
