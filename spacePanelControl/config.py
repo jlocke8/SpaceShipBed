@@ -455,8 +455,8 @@ IC3B_sound_map = {
                             1: "./sounds/lapoopooOn.wav"
                         },
                         7:{
-                            0: "./sounds/tranceiverOff.wav",
-                            1: "./sounds/tranceiverOn.wav"
+                            0: "./sounds/transceiverOff.wav",
+                            1: "./sounds/transceiverOn.wav"
                         }
                     }  
 
