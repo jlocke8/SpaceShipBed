@@ -1,4 +1,4 @@
-#!/bin/python3
+#!/usr/bin/python
 from ast import Pass
 import uinput       #used to programmatically send keyboard,mouse, or joystick inputs
 import pygame       #used in this program to manipulate sounds 

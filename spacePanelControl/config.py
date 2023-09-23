@@ -124,7 +124,7 @@ IC5A_uinput_map =   {
                         6: {"polarity": 0, "key": uinput.KEY_0},
                         7: {"polarity": 1, "key": uinput.KEY_0}
                     }
-#BACK SIDE PANEL
+#BACK SIDE PANEL2
 IC5B_uinput_map =   {     
                         0: {"polarity": 1, "key": uinput.KEY_0},
                         1: {"polarity": 1, "key": uinput.KEY_0},
@@ -132,8 +132,8 @@ IC5B_uinput_map =   {
                         3: {"polarity": 1, "key": uinput.KEY_0},
                         4: {"polarity": 1, "key": uinput.KEY_0},
                         5: {"polarity": 1, "key": uinput.KEY_0},
-                        6: {"polarity": 0, "key": uinput.KEY_0},
-                        7: {"polarity": 0, "key": uinput.KEY_0}
+                        6: {"polarity": 0, "key": uinput.KEY_1},
+                        7: {"polarity": 0, "key": uinput.KEY_2}
                     }
 #BACK SIDE PANEL
 IC6A_uinput_map =   {     
@@ -221,11 +221,11 @@ IC0B_sound_map = {
                         },
                         1: {
                             0: "./sounds/",
-                            1: "./sounds/"
+                            1: "./sounds/turbine.mp3"
                         },
                         2:{
                             0: "./sounds/",
-                            1: "./sounds/"
+                            1: "./sounds/f16-fighter-jet-start.mp3"
                         },
                         3:{
                             0: "./sounds/fuelpump1Off.wav",
@@ -361,11 +361,11 @@ IC2B_sound_map = {
                         },
                         1: {
                             0: "./sounds/",
-                            1: "./sounds/"
+                            1: "./sounds/turbine.mp3"
                         },
                         2:{
-                            0: "./sounds/startupsequence.wav",
-                            1: "./sounds/startupsequence.wav"
+                            0: "./sounds/",
+                            1: "./sounds/f16-fighter-jet-start.mp3"
                         },
                         3:{
                             0: "./sounds/fuelpump2Off.wav",
@@ -373,19 +373,19 @@ IC2B_sound_map = {
                         },
                         4:{
                             0: "./sounds/",
-                            1: "./sounds/"
+                            1: "./sounds/circulate.mp3"
                         },
                         5:{
                             0: "./sounds/",
-                            1: "./sounds/"
+                            1: "./sounds/distress-signal-3.mp3"
                         },
                         6:{
                             0: "./sounds/",
-                            1: "./sounds/"
+                            1: "./sounds/distress-signal.mp3"
                         },
                         7:{
                             0: "./sounds/",
-                            1: "./sounds/"
+                            1: "./sounds/distress-signal-2.mp3"
                         }
                     }  
 
@@ -544,20 +544,20 @@ IC5A_sound_map = {
                             1: "./sounds/booboojuiceOn.wav"
                         },
                         3:{
-                            0: "./sounds/cellsmainOff.wav",
-                            1: "./sounds/cellsmainOn.wav"
+                            0: "./sounds/cellsmainOn.wav",
+                            1: "./sounds/cellsmainOff.wav"
                         },
                         4:{
-                            0: "./sounds/cellsauxOff.wav",
-                            1: "./sounds/cellsauxOn.wav"
+                            0: "./sounds/cellsauxOn.wav",
+                            1: "./sounds/cellsauxOff.wav"
                         },
                         5:{
-                            0: "./sounds/atootieOff.wav",
-                            1: "./sounds/atootieOn.wav"
+                            0: "./sounds/atootieOn.wav",
+                            1: "./sounds/atootieOff.wav"
                         },
                         6:{
-                            0: "./sounds/footytoeOff.wav",
-                            1: "./sounds/footytoeOn.wav"
+                            0: "./sounds/footytoeOn.wav",
+                            1: "./sounds/footytoeOff.wav"
                         },
                         7:{
                             0: "./sounds/",
@@ -591,12 +591,12 @@ IC5B_sound_map = {
                             1: "./sounds/generator2On.wav"
                         },
                         6:{
-                            0: "./sounds/o2synthOff.wav",
-                            1: "./sounds/o2synthOn.wav"
+                            0: "./sounds/o2synthOn.wav",
+                            1: "./sounds/o2synthOff.wav"
                         },
                         7:{
-                            0: "./sounds/co2scrubberOff.wav",
-                            1: "./sounds/co2scrubberOn.wav"
+                            0: "./sounds/co2scrubberOn.wav",
+                            1: "./sounds/co2scrubberOff.wav"
                         }
                     }  
 
@@ -646,11 +646,11 @@ IC6B_sound_map = {
                         },
                         2:{
                             0: "./sounds/",
-                            1: "./sounds/"
+                            1: "./sounds/sonarping.mp3"
                         },
                         3:{
                             0: "./sounds/",
-                            1: "./sounds/"
+                            1: "./sounds/sonarsweepbeep.mp3"
                         },
                         4:{
                             0: "./sounds/",
